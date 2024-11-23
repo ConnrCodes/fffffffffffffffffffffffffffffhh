@@ -4,10 +4,11 @@ interface User {
   username: string;
   role: 'admin' | 'user';
   allowedFeatures: string[];
+  password: string; // Added password field
 }
 
 interface AuthContextType {
-  user: User | null;
+  user: Omit<User, 'password'> | null; // Exclude password from the exposed user object
   login: (username: string, password: string) => boolean;
   logout: () => void;
 }
@@ -23,7 +24,7 @@ export const useAuth = () => {
 };
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
+  const [user, setUser] = useState<Omit<User, 'password'> | null>(null);
 
   useEffect(() => {
     const savedUser = localStorage.getItem('user');
@@ -35,11 +36,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const getUserConfig = (username: string): User | null => {
     const users: { [key: string]: User } = {
       csiedentop: {
-        username: 'family',
+        username: 'csiedentop',
         role: 'admin',
-        allowedFeatures: ['all']
-
-      }
+        allowedFeatures: ['all'],
+        password: '12345678',
+      },
+      sdsiedentop: {
+        username: 'sdsiedentop',
+        role: 'user',
+        allowedFeatures: ['chat', 'calculator', 'expense'],
+        password: '12345678',
+      },
+      ijsiedentop: {
+        username: 'ijsiedentop',
+        role: 'user',
+        allowedFeatures: ['chat', 'calculator'],
+        password: '12345678',
+      },
+      jmsiedentop: {
+        username: 'jmsiedentop',
+        role: 'user',
+        allowedFeatures: ['expense', 'chat'],
+        password: '12345678',
+      },
     };
 
     return users[username] || null;
@@ -47,9 +66,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = (username: string, password: string) => {
     const user = getUserConfig(username);
-    if (user) {
-      setUser(user);
-      localStorage.setItem('user', JSON.stringify(user));
+    if (user && user.password === password) {
+      const { password: _, ...userWithoutPassword } = user; // Exclude password from stored user object
+      setUser(userWithoutPassword);
+      localStorage.setItem('user', JSON.stringify(userWithoutPassword));
       return true;
     }
     return false;
