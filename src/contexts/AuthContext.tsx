@@ -52,7 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         username: 'ijsiedentop',
         role: 'user',
         allowedFeatures: ['chat', 'calculator'],
-        password: '12345678',
+        password: '123456789',
       },
       jmsiedentop: {
         username: 'jmsiedentop',
