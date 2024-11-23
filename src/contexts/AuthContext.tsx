@@ -60,6 +60,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         allowedFeatures: ['all'],
         password: '12345678',
       },
+      },
+      tester: {
+        username: 'test123',
+        role: 'tester',
+        allowedFeatures: ['all'],
+        password: 'tester',
+      },
     };
 
     return users[username] || null;
