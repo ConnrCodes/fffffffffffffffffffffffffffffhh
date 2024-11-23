@@ -45,6 +45,12 @@ export const records: Record[] = [
     phone: "6788966803"
   },
   {
+    name: "Ian Siedentop",
+    age: "teens",
+    address: "1475 Holly Lake Circle 30078",
+    phone: "4702332485"
+  },
+  {
     name: "Chase Pullman",
     address: "3120 Rosewood Court, Norcross, GA 30092",
     phone: "6782453091"
