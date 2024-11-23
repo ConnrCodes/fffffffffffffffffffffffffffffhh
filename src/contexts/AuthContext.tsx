@@ -35,14 +35,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const getUserConfig = (username: string): User | null => {
     const users: { [key: string]: User } = {
       csiedentop: {
-        username: 'csiedentop',
+        username: 'family',
         role: 'admin',
         allowedFeatures: ['all']
-      },
-      sdsiedentop: {
-        username: 'sdsiedentop',
-        role: 'user',
-        allowedFeatures: ['chat', 'calculator', 'expense']
+
       }
     };
 

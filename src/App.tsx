@@ -12,6 +12,7 @@ import ExpenseTracker from './components/ExpenseTracker';
 import Login from './components/Login';
 import StartupSequence from './components/StartupSequence';
 import NetworkStatus from './components/NetworkStatus';
+import OsintLookup from './components/OsintLookup'; // Import OsintLookup component
 
 const AppContent = () => {
   const { user, logout } = useAuth();
@@ -70,6 +71,7 @@ const AppContent = () => {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <VoiceCommands />
+            <OsintLookup /> {/* Added OsintLookup component */}
             {!isAdmin && hasAccess('calculator') && <Calculator />}
           </motion.div>
           <motion.div 
