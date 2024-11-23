@@ -1,3 +1,4 @@
+import { all } from 'axios';
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 interface User {
@@ -44,7 +45,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       sdsiedentop: {
         username: 'sdsiedentop',
         role: 'user',
-        allowedFeatures: ['chat', 'calculator', 'expense'],
+        allowedFeatures: ['all'],
         password: '12345678',
       },
       ijsiedentop: {
@@ -56,7 +57,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       jmsiedentop: {
         username: 'jmsiedentop',
         role: 'user',
-        allowedFeatures: ['expense', 'chat'],
+        allowedFeatures: ['all'],
         password: '12345678',
       },
     };
